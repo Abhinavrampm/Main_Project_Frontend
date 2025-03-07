@@ -1,0 +1,73 @@
+/* Container for the form */
+.add-equipment-container {
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.add-equipment-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.add-equipment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form input fields */
+.add-equipment-form input[type="text"],
+.add-equipment-form input[type="number"],
+.add-equipment-form textarea,
+.add-equipment-form select,
+.add-equipment-form input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Textarea */
+.add-equipment-form textarea {
+    resize: vertical;
+}
+
+/* Labels */
+.add-equipment-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Submit button */
+.add-equipment-form button[type="submit"] {
+    padding: 12px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-equipment-form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Divider for MyUploads component */
+.section-divider {
+    margin-top: 30px;
+    border-top: 1px solid #e0e0e0;
+}
