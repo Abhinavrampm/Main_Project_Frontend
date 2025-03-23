@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/CropDisease.css';
 import axios from 'axios';
+import { FaUserDoctor } from "react-icons/fa6";
 
 const CropDisease = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -86,7 +87,7 @@ const CropDisease = () => {
   return (
     <div className='crop-disease-container'>
       <div className="disease-form">
-        <h1>Crop Disease Detection</h1>
+        <h1><FaUserDoctor /> Crop Disease Detection</h1>
         <div className="upload-section">
           <input type="file" onChange={handleFileChange} accept="image/*" />
           {previewUrl && (

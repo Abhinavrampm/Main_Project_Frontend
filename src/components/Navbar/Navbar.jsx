@@ -16,19 +16,18 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
       <ul className="nav-links">
         {isLoggedIn ? (
           <>
-            <li><a href="/weatherForecast">Weather Forecast</a></li>
+            <li><a href="/weatherForecast">Dashboard</a></li>
             <li><a href="/expenseTrackerDashboard">Expense Tracker</a></li>
             <li><a href="/expertConsult">Expert Consult</a></li>
-            <li><a href="/Crophealth">Crop Doctor</a></li>
+            <li><a href="/jobsBoard">Jobs Portal</a></li>
+            <li><a href="/Crophealth">AI Crop Doctor</a></li>
             <li><a href="/rentalPage">RentalPage</a></li>
             <li><a href="/notifications">Notifications</a></li>
-            <li><a href="/about">About</a></li>
           </>
         ) : (
           <>
             <li><a href="/">Home</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a href="/services">Our Services</a></li>
           </>
         )}
       </ul>
@@ -39,7 +38,7 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
           <>
             {/* Use the navigate function on button clicks */}
             <button className="login-btn" onClick={() => navigate('/Login')}>Login</button>
-            <button className="signup-btn" onClick={() => navigate('/choose')}>Sign Up</button>
+            <button className="signup-btn" onClick={() => navigate('/Signup')}>Sign Up</button>
           </>
         )}
       </div>

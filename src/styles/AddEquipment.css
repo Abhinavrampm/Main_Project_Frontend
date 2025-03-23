@@ -1,73 +1,64 @@
-/* Container for the form */
 .add-equipment-container {
-    width: 60%;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-/* Header */
-.add-equipment-container h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form styling */
-.add-equipment-form {
+.add-equipment-wrapper {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 15px;
-}
-
-/* Form input fields */
-.add-equipment-form input[type="text"],
-.add-equipment-form input[type="number"],
-.add-equipment-form textarea,
-.add-equipment-form select,
-.add-equipment-form input[type="file"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     width: 100%;
+    margin-top: 100px;
+    background: #f5fdf5; /* Background added to the container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
-/* Textarea */
-.add-equipment-form textarea {
-    resize: vertical;
+.add-equipment-title {
+    text-align: center;
+    color: #2c6e49;
 }
 
-/* Labels */
-.add-equipment-form label {
-    display: flex;
-    flex-direction: column;
+.add-equipment-form {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+}
+
+.add-equipment-input,
+.add-equipment-select,
+.add-equipment-textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
     font-size: 16px;
-    color: #555;
 }
 
-/* Submit button */
-.add-equipment-form button[type="submit"] {
+.add-equipment-select {
+    background: white;
+}
+
+.add-equipment-button {
+    width: 100%;
     padding: 12px;
+    background-color: #2c6e49;
+    color: white;
     font-size: 18px;
-    color: #fff;
-    background-color: #28a745;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
-.add-equipment-form button[type="submit"]:hover {
-    background-color: #218838;
+.add-equipment-button:hover {
+    background-color: #1e5631;
 }
 
-/* Divider for MyUploads component */
-.section-divider {
-    margin-top: 30px;
-    border-top: 1px solid #e0e0e0;
+.add-equipment-file {
+    border: none;
 }

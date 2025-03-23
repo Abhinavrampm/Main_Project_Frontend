@@ -1,7 +1,9 @@
 /* Container styling */
 .crop-rec-wrapper {
-  padding-left: 220px;
-  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 130px;
 }
 .crop-recom-container {
   background: #f0fdf4; /* Light green background */

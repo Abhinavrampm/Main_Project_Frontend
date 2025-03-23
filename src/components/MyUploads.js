@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/MyUploads.css'
 
-const MyUploads = () => {
+const MyUploads = ({ refreshUploads }) => {
     const [myEquipment, setMyEquipment] = useState([]);
-    const [notifications, setNotifications] = useState([]);
     const token = localStorage.getItem('token');
     useEffect(() => {
         // Fetch user's uploaded equipment
@@ -15,20 +14,11 @@ const MyUploads = () => {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMyEquipment(response.data);
+            console.log("Equipment Data: ", myEquipment);
         };
 
-        // Fetch user's notifications (modify endpoint if needed)
-        // //const fetchNotifications = async () => {
-        //     // Implement logic for fetching notifications here
-        //     const response = await axios.get('http://localhost:5000/api/notifications', {
-        //         headers: { Authorization: `Bearer ${token}` }
-        //     });
-        //     setNotifications(response.data);
-        // };
-
         fetchMyEquipment();
-        //fetchNotifications();
-    }, []);
+    }, [refreshUploads]);
 
     const handleDelete = async (id) => {
         const token = localStorage.getItem('token');
@@ -44,14 +34,12 @@ const MyUploads = () => {
     };
 
     return (
-        <div>
-            <h2>My Uploads</h2>
-
-
+        <div className='your-uploads-wrapper'>
+            <h2>Your Uploads</h2>
             <div className="my-uploads-list">
                 {myEquipment.map((item) => (
-                    <div key={item._id} className="equipment-card">
-                        <img src={`http://localhost:5000/${item.imagePath}`} alt={item.name} className="card-image" />
+                    <div key={item._id} className="equipment-upload-card">
+                        <img src={`http://localhost:5000/${item.imagePath}`} alt={item.name} className="upload-card-image" />
                         <h3>{item.name}</h3>
                         <p>{item.description}</p>
                         <p>Price: ${item.price} / {item.rateType}</p>

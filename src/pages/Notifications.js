@@ -42,7 +42,7 @@ const Notifications = () => {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert('Offer accepted');
-    
+
             // Remove the accepted offer notification from ourOffers
             setOurOffers(prev => prev.filter(notif => notif.offerId._id !== offerId));
         } catch (error) {
@@ -50,7 +50,7 @@ const Notifications = () => {
             alert('Failed to accept offer');
         }
     };
-    
+
     const handleReject = async (equipmentId, offerId) => {
         try {
             const token = localStorage.getItem('token');
@@ -89,49 +89,51 @@ const Notifications = () => {
 
     return (
         <div className="notifications-container">
-            <h3>Notifications Center</h3>
+            <div className='notifications-wrapper'>
+                <h2>Rental Page Notifications</h2>
 
-            {/* Our Offers Section */}
-            <section>
-                <h4>Our Offers</h4>
-                {ourOffers.length === 0 ? (
-                    <p className="empty-section">No offers on our equipment</p>
-                ) : (
-                    <ul>
-                        {ourOffers.map((notification) => (
-                            <li key={notification._id} className="notification-item">
-                                <p><strong>Message:</strong> {notification.message}</p>
-                                <p><strong>Date:</strong> {new Date(notification.date).toLocaleDateString()}</p>
-                                <p><strong>From:</strong> {notification.senderId?.name}</p>
-                                <div className="notification-buttons">
-                                    <button onClick={() => handleAccept(notification.equipmentId, notification.offerId._id)} className="accept-button">Accept</button>
-                                    <button onClick={() => handleReject(notification.equipmentId, notification.offerId._id)} className="reject-button">Reject</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </section>
+                {/* Our Offers Section */}
+                <section>
+                    <h4>Our Offers</h4>
+                    {ourOffers.length === 0 ? (
+                        <p className="empty-section">No offers on our equipment</p>
+                    ) : (
+                        <ul>
+                            {ourOffers.map((notification) => (
+                                <li key={notification._id} className="notification-item">
+                                    <p><strong>Message:</strong> {notification.message}</p>
+                                    <p><strong>Date:</strong> {new Date(notification.date).toLocaleDateString()}</p>
+                                    <p><strong>From:</strong> {notification.senderId?.name}</p>
+                                    <div className="notification-buttons">
+                                        <button onClick={() => handleAccept(notification.equipmentId, notification.offerId._id)} className="accept-button">Accept</button>
+                                        <button onClick={() => handleReject(notification.equipmentId, notification.offerId._id)} className="reject-button">Reject</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
 
-            <div className="section-divider"></div>
+                <div className="section-divider"></div>
 
-            {/* Our Requests Section */}
-            <section>
-                <h4>Our Requests</h4>
-                {ourRequests.length === 0 ? (
-                    <p className="empty-section">No pending requests</p>
-                ) : (
-                    <ul>
-                        {ourRequests.map((notification) => (
-                            <li key={notification._id} className="notification-item">
-                                <p><strong>Status:</strong> {notification.message}</p>
-                                <p><strong>Date:</strong> {new Date(notification.date).toLocaleDateString()}</p>
-                                <button onClick={() => handleCloseRequest(notification._id)} className="close-button">Close</button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </section>
+                {/* Our Requests Section */}
+                <section>
+                    <h4>Our Requests</h4>
+                    {ourRequests.length === 0 ? (
+                        <p className="empty-section">No pending requests</p>
+                    ) : (
+                        <ul>
+                            {ourRequests.map((notification) => (
+                                <li key={notification._id} className="notification-item">
+                                    <p><strong>Status:</strong> {notification.message}</p>
+                                    <p><strong>Date:</strong> {new Date(notification.date).toLocaleDateString()}</p>
+                                    <button onClick={() => handleCloseRequest(notification._id)} className="close-button">Close</button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
+            </div>
         </div>
     );
 };

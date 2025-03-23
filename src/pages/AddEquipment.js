@@ -12,6 +12,8 @@ const AddEquipment = () => {
     const [location, setLocation] = useState('');
     const [image, setImage] = useState(null);
     const [userName, setUserName] = useState(''); // New state for storing user name
+    const [refreshUploads, setRefreshUploads] = useState(false); // State to refresh uploads
+
 
     // Fetch user profile to get user name
     useEffect(() => {
@@ -21,13 +23,13 @@ const AddEquipment = () => {
                 const response = await axios.get('http://localhost:5000/api/auth/profile', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-    
+
                 setUserName(response.data.name);
             } catch (error) {
                 console.error("Error fetching user profile:", error);
             }
         };
-        
+
         fetchUserProfile();
     }, []);
 
@@ -46,21 +48,22 @@ const AddEquipment = () => {
         formData.append('location', location);
         formData.append('userName', userName); // Include userName in formData
         formData.append('image', image);
-    
+
         const token = localStorage.getItem('token');
 
         try {
             const response = await axios.post(
-                'http://localhost:5000/api/rentalSystem/add', 
-                formData, 
+                'http://localhost:5000/api/rentalSystem/add',
+                formData,
                 {
-                    headers: { 
+                    headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,
                     },
                 }
             );
             alert('Equipment added successfully!');
+            setRefreshUploads(prev => !prev); // Toggle state to refresh MyUploads
         } catch (error) {
             console.log("Error in AddEquipment.js", error);
             alert('Failed to add equipment');
@@ -68,72 +71,77 @@ const AddEquipment = () => {
     };
 
     return (
-        <div>
-            <h2>Add New Equipment</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Equipment Name"
-                    required
-                />
-                <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Description"
-                    required
-                />
-                <input
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    placeholder="Price"
-                    required
-                />
-                <label>
-                    Rent Rate Type:
-                    <select value={rateType} onChange={(e) => setRateType(e.target.value)}>
-                        <option value="day">Per Day</option>
-                        <option value="week">Per Week</option>
-                    </select>
-                </label>
-                
-                <label>
-                    Condition:
-                    <select value={condition} onChange={(e) => setCondition(e.target.value)}>
-                        <option value="New">New</option>
-                        <option value="Good">Good</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Poor">Poor</option>
-                    </select>
-                </label>
+        <div className="add-equipment-container">
+            <div className='add-equipment-wrapper'>
+                <h2 className="add-equipment-title">Add New Equipment</h2>
+                <form className="add-equipment-form" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Equipment Name"
+                        required
+                        className="add-equipment-input"
+                    />
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Description"
+                        required
+                        className="add-equipment-textarea"
+                    />
+                    <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        placeholder="Price"
+                        required
+                        className="add-equipment-input"
+                    />
+                    <label className="add-equipment-label">
+                        Rent Rate Type:
+                        <select value={rateType} onChange={(e) => setRateType(e.target.value)} className="add-equipment-select">
+                            <option value="day">Per Day</option>
+                            <option value="week">Per Week</option>
+                        </select>
+                    </label>
 
-                <label>
-                    Location:
-                    <select value={location} onChange={(e) => setLocation(e.target.value)} required>
-                        <option value="" disabled>Select District</option>
-                        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                        <option value="Kollam">Kollam</option>
-                        <option value="Pathanamthitta">Pathanamthitta</option>
-                        <option value="Alappuzha">Alappuzha</option>
-                        <option value="Kottayam">Kottayam</option>
-                        <option value="Idukki">Idukki</option>
-                        <option value="Ernakulam">Ernakulam</option>
-                        <option value="Thrissur">Thrissur</option>
-                        <option value="Palakkad">Palakkad</option>
-                        <option value="Malappuram">Malappuram</option>
-                        <option value="Kozhikode">Kozhikode</option>
-                        <option value="Wayanad">Wayanad</option>
-                        <option value="Kannur">Kannur</option>
-                        <option value="Kasaragod">Kasaragod</option>
-                    </select>
-                </label>
+                    <label className="add-equipment-label">
+                        Condition:
+                        <select value={condition} onChange={(e) => setCondition(e.target.value)} className="add-equipment-select">
+                            <option value="New">New</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </label>
 
-                <input type="file" onChange={handleImageChange} accept="image/*" required />
-                <button type="submit">Add Equipment</button>
-            </form>
-            <MyUploads />
+                    <label className="add-equipment-label">
+                        Location:
+                        <select value={location} onChange={(e) => setLocation(e.target.value)} required className="add-equipment-select">
+                            <option value="" disabled>Select District</option>
+                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Pathanamthitta">Pathanamthitta</option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Kottayam">Kottayam</option>
+                            <option value="Idukki">Idukki</option>
+                            <option value="Ernakulam">Ernakulam</option>
+                            <option value="Thrissur">Thrissur</option>
+                            <option value="Palakkad">Palakkad</option>
+                            <option value="Malappuram">Malappuram</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            <option value="Wayanad">Wayanad</option>
+                            <option value="Kannur">Kannur</option>
+                            <option value="Kasaragod">Kasaragod</option>
+                        </select>
+                    </label>
+
+                    <input type="file" onChange={handleImageChange} accept="image/*" required className="add-equipment-file" />
+                    <button type="submit" className="add-equipment-button">Add Equipment</button>
+                </form>
+            </div>
+            <MyUploads refreshUploads={refreshUploads} />
         </div>
     );
 };

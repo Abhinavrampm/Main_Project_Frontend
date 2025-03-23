@@ -13,7 +13,6 @@
 .login-container::before {
   content: "";                                   /* Create a pseudo-element */
   position: absolute;
-  margin-top: 61px;                            /* Position it absolutely */
   top: 0;                                        /* Stretch from the top */
   left: 0;                                       /* Stretch from the left */
   right: 0;                                      /* Stretch to the right */

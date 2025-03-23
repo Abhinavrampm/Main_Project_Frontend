@@ -14,7 +14,7 @@ const CropRecommendation = () => {
   });
 
   const [result, setResult] = useState(null);
-  const [confidence, setConfidence] = useState(null);
+  // const [confidence, setConfidence] = useState(null);
   const [suggestions, setSuggestions] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +47,7 @@ const CropRecommendation = () => {
         Object.entries(formData).map(([key, value]) => [key, parseFloat(value)])
       );
 
-      const response = await fetch("http://127.0.0.1:5000/predict-crop", {
+      const response = await fetch("http://127.0.0.1:5002/predict-crop", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formattedData)
@@ -57,7 +57,7 @@ const CropRecommendation = () => {
 
       const data = await response.json();
       setResult(data.predicted_crop);
-      setConfidence(data.confidence_score);
+
 
       // Fetch AI-generated tips
       const tips = await fetchCropTips(data.predicted_crop);
@@ -65,7 +65,6 @@ const CropRecommendation = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       setResult("Error predicting crop. Please try again.");
-      setConfidence(null);
     } finally {
       setLoading(false);
     }
@@ -84,7 +83,7 @@ const CropRecommendation = () => {
               parts: [
                 {
                   text: `You are an AI assistant specialized in agriculture. 
-                  Provide 5 practical farming tips for growing "${crop}".`
+                  Provide 5 practical farming tips for growing "${crop}". The points should be small and concise , avoid using bold highlighting`
                 }
               ]
             }
@@ -129,7 +128,6 @@ const CropRecommendation = () => {
         {result && (
           <div className="result-container">
             <h3>Recommended Crop: {result}</h3>
-            {confidence !== null && <p>Confidence Score: {confidence}%</p>}
             {suggestions ? (
               <ul className="suggestions-list">
                 {suggestions.map((tip, index) => (

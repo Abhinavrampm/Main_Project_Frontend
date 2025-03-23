@@ -36,20 +36,22 @@ const AgriculturalNews = () => {
 
   return (
     <div className="news-container">
-      <h2 className="news-head">Latest Agricultural News</h2>
-      {news.length > 0 ? (
-        <ul className="news-ul">
-          {news.map((article, index) => (
-            <li className="news-li" key={index}>
-              <a href={article.link} target="_blank" rel="noopener noreferrer">
-                <h3>{article.title}</h3>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No news available at the moment.</p>
-      )}
+      <div className="news-wrapper">
+        <h2 className="news-head">Latest Agricultural News</h2>
+        {news.length > 0 ? (
+          <ul className="news-ul">
+            {news.map((article, index) => (
+              <li className="news-li" key={index}>
+                <a href={article.link} target="_blank" rel="noopener noreferrer">
+                  <h3>{article.title}</h3>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No news available at the moment.</p>
+        )}
+      </div>
     </div>
   );
 };

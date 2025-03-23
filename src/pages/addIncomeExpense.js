@@ -137,243 +137,88 @@ const AddIncomeExpense = () => {
         <div style={{ padding: "20px", position: "relative" }}>
             <div
                 style={{
-                    background: "white",
                     padding: "20px",
                     borderRadius: "10px",
                     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                    background: "white",
                 }}
             >
-                {/* Top Bar */}
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: "20px",
-                        alignItems: "center",
-                    }}
-                >
-                    {/* Search Bar and Buttons */}
-                    <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                        <input
-                            type="text"
-                            placeholder="Search by Transaction Name"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            style={{
-                                padding: "10px",
-                                borderRadius: "5px",
-                                border: "1px solid #ccc",
-                                width: "250px",
-                            }}
-                        />
-                        <label>From: </label>
-                         <input
-                            type="date"
-                            name="from"
-                            value={dateRange.from}
-                            onChange={handleDateRangeChange}
-                            style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        />
-                        <label>To: </label>
-                        <input
-                            type="date"
-                            name="to"
-                            value={dateRange.to}
-                            onChange={handleDateRangeChange}
-                            style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        />
-                        <button
-                            style={{
-                                background: "#007bff",
-                                color: "white",
-                                padding: "10px 20px",
-                                border: "none",
-                                borderRadius: "5px",
-                                cursor: "pointer",
-                            }}
-                            onClick={exportToPDF}
-                        >
-                            PDF
-                        </button>
-                        <button
-                            style={{
-                                background: "#28a745",
-                                color: "white",
-                                padding: "10px 20px",
-                                border: "none",
-                                borderRadius: "5px",
-                                cursor: "pointer",
-                            }}
-                            onClick={exportToExcel}
-                        >
-                            Excel
-                        </button>
-                    </div>
-
-                    {/* Add Income/Expense Button */}
-                    <button
-                        style={{
-                            background: "#007bff",
-                            color: "white",
-                            padding: "10px 20px",
-                            border: "none",
-                            borderRadius: "5px",
-                            cursor: "pointer",
-                        }}
-                        onClick={() => setIsBladeOpen(true)}
+                <div 
+                    style={
+                        {   
+                            paddingTop: "80px",
+                            
+                        }
+                    }
                     >
-                        Add Income/Expense
-                    </button>
-                </div>
-
-                {/* Table */}
-                <table
-                    style={{
-                        width: "100%",
-                        borderCollapse: "collapse",
-                    }}
-                >
-                    <thead>
-                        <tr>
-                            <th style={tableHeaderStyle}>SL.NO</th>
-                            <th style={tableHeaderStyle}>Transaction Name</th>
-                            <th style={tableHeaderStyle}>Transaction Type</th>
-                            <th style={tableHeaderStyle}>Amount</th>
-                            <th style={tableHeaderStyle}>Date</th>
-                            <th style={tableHeaderStyle}>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredTransactions.map((transaction, index) => (
-                            <tr key={transaction.id}>
-                                <td style={tableCellStyle}>{index + 1}</td>
-                                <td style={tableCellStyle}>{transaction.transactionName}</td>
-                                <td style={tableCellStyle}>
-                                    {transaction.transactionType === 1 ? "Income" : "Expense"}
-                                </td>
-                                <td style={tableCellStyle}>{formatDecimal(transaction.amount)}</td>
-                                <td style={tableCellStyle}>{formatDate(transaction.date)}</td>
-                                <td style={tableCellStyle}>
-                                    <button
-                                        style={{
-                                            background: "#dc3545",
-                                            color: "white",
-                                            border: "none",
-                                            padding: "5px 10px",
-                                            borderRadius: "5px",
-                                            cursor: "pointer",
-                                        }}
-                                        onClick={() => handleDelete(transaction._id)} // Pass the transaction ID
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {/* Message */}
-            {message && <p style={{ color: "green", marginTop: "10px" }}>{message}</p>}
-
-            {/* Sliding Blade */}
-            {isBladeOpen && (
-                <div
-                    style={{
-                        position: "fixed",
-                        top: "0",
-                        right: "0",
-                        width: "450px",
-                        height: "100%",
-                        background: "#f8f9fa",
-                        boxShadow: "-2px 0 6px rgba(0,0,0,0.1)",
-                        overflowY: "auto",
-                        zIndex: 1050,
-                    }}
-                >
-                    {/* Card Container */}
+                    {/* Top Bar */}
                     <div
                         style={{
-                            background: "white",
-                            margin: "10px",
-                            padding: "30px",
-                            borderRadius: "10px",
-                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginBottom: "20px",
+                            alignItems: "center",
                         }}
                     >
-                        {/* Close Button */}
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                marginBottom: "20px",
-                            }}
-                        >
-                            <h3>Add Income/Expense</h3>
+                        {/* Search Bar and Buttons */}
+                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                            <input
+                                type="text"
+                                placeholder="Search by Transaction Name"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{
+                                    padding: "10px",
+                                    borderRadius: "5px",
+                                    border: "1px solid #ccc",
+                                    width: "250px",
+                                }}
+                            />
+                            <label>From: </label>
+                            <input
+                                type="date"
+                                name="from"
+                                value={dateRange.from}
+                                onChange={handleDateRangeChange}
+                                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc" }}
+                            />
+                            <label>To: </label>
+                            <input
+                                type="date"
+                                name="to"
+                                value={dateRange.to}
+                                onChange={handleDateRangeChange}
+                                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc" }}
+                            />
                             <button
                                 style={{
-                                    background: "transparent",
+                                    background: "#007bff",
+                                    color: "white",
+                                    padding: "10px 20px",
                                     border: "none",
-                                    fontSize: "18px",
+                                    borderRadius: "5px",
                                     cursor: "pointer",
-                                    color: "black",
                                 }}
-                                onClick={() => setIsBladeOpen(false)} // Close the blade
+                                onClick={exportToPDF}
                             >
-                                ✖
+                                PDF
+                            </button>
+                            <button
+                                style={{
+                                    background: "#28a745",
+                                    color: "white",
+                                    padding: "10px 20px",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    cursor: "pointer",
+                                }}
+                                onClick={exportToExcel}
+                            >
+                                Excel
                             </button>
                         </div>
 
-                        <div style={{ marginBottom: "15px" }}>
-                            <label>Transaction Name</label>
-                            <input
-                                type="text"
-                                name="transactionName"
-                                value={formData.transactionName}
-                                onChange={handleInputChange}
-                                style={inputStyle}
-                                required
-                            />
-                        </div>
-
-                        <div style={{ marginBottom: "15px" }}>
-                            <label>Transaction Type</label>
-                            <select
-                                name="transactionType"
-                                value={formData.transactionType}
-                                onChange={handleInputChange}
-                                style={inputStyle}
-                            >
-                                <option value="">Select</option>
-                                <option value="1">Income</option>
-                                <option value="2">Expense</option>
-                            </select>
-                        </div>
-
-                        <div style={{ marginBottom: "15px" }}>
-                            <label>Amount</label>
-                            <input
-                                type="number"
-                                name="amount"
-                                value={formData.amount}
-                                onChange={handleInputChange}
-                                style={inputStyle}
-                            />
-                        </div>
-
-                        <div style={{ marginBottom: "15px" }}>
-                            <label>Date</label>
-                            <input
-                                type="date"
-                                name="date"
-                                value={formData.date}
-                                onChange={handleInputChange}
-                                style={inputStyle}
-                            />
-                        </div>
-
+                        {/* Add Income/Expense Button */}
                         <button
                             style={{
                                 background: "#007bff",
@@ -383,14 +228,179 @@ const AddIncomeExpense = () => {
                                 borderRadius: "5px",
                                 cursor: "pointer",
                             }}
-                            onClick={handleSave} // Save the transaction
+                            onClick={() => setIsBladeOpen(true)}
                         >
-                            Save
+                            Add Income/Expense
                         </button>
                     </div>
+
+                    {/* Table */}
+                    <table
+                        style={{
+                            width: "100%",
+                            borderCollapse: "collapse",
+                        }}
+                    >
+                        <thead>
+                            <tr>
+                                <th style={tableHeaderStyle}>SL.NO</th>
+                                <th style={tableHeaderStyle}>Transaction Name</th>
+                                <th style={tableHeaderStyle}>Transaction Type</th>
+                                <th style={tableHeaderStyle}>Amount</th>
+                                <th style={tableHeaderStyle}>Date</th>
+                                <th style={tableHeaderStyle}>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredTransactions.map((transaction, index) => (
+                                <tr key={transaction.id}>
+                                    <td style={tableCellStyle}>{index + 1}</td>
+                                    <td style={tableCellStyle}>{transaction.transactionName}</td>
+                                    <td style={tableCellStyle}>
+                                        {transaction.transactionType === 1 ? "Income" : "Expense"}
+                                    </td>
+                                    <td style={tableCellStyle}>{formatDecimal(transaction.amount)}</td>
+                                    <td style={tableCellStyle}>{formatDate(transaction.date)}</td>
+                                    <td style={tableCellStyle}>
+                                        <button
+                                            style={{
+                                                background: "#dc3545",
+                                                color: "white",
+                                                border: "none",
+                                                padding: "5px 10px",
+                                                borderRadius: "5px",
+                                                cursor: "pointer",
+                                            }}
+                                            onClick={() => handleDelete(transaction._id)} // Pass the transaction ID
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            )}
+
+                {/* Message */}
+                {message && <p style={{ color: "green", marginTop: "10px" }}>{message}</p>}
+
+                {/* Sliding Blade */}
+                {isBladeOpen && (
+                    <div
+                        style={{
+                            position: "fixed",
+                            top: "0",
+                            right: "0",
+                            width: "450px",
+                            height: "100%",
+                            background: "#f8f9fa",
+                            boxShadow: "-2px 0 6px rgba(0,0,0,0.1)",
+                            overflowY: "auto",
+                            zIndex: 1050,
+                        }}
+                    >
+                        {/* Card Container */}
+                        <div
+                            style={{
+                                background: "white",
+                                margin: "10px",
+                                padding: "30px",
+                                borderRadius: "10px",
+                                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                            }}
+                        >
+                            {/* Close Button */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    marginBottom: "20px",
+                                }}
+                            >
+                                <h3>Add Income/Expense</h3>
+                                <button
+                                    style={{
+                                        background: "transparent",
+                                        border: "none",
+                                        fontSize: "18px",
+                                        cursor: "pointer",
+                                        color: "black",
+                                    }}
+                                    onClick={() => setIsBladeOpen(false)} // Close the blade
+                                >
+                                    ✖
+                                </button>
+                            </div>
+
+                            <div style={{ marginBottom: "15px" }}>
+                                <label>Transaction Name</label>
+                                <input
+                                    type="text"
+                                    name="transactionName"
+                                    value={formData.transactionName}
+                                    onChange={handleInputChange}
+                                    style={inputStyle}
+                                    required
+                                />
+                            </div>
+
+                            <div style={{ marginBottom: "15px" }}>
+                                <label>Transaction Type</label>
+                                <select
+                                    name="transactionType"
+                                    value={formData.transactionType}
+                                    onChange={handleInputChange}
+                                    style={inputStyle}
+                                >
+                                    <option value="">Select</option>
+                                    <option value="1">Income</option>
+                                    <option value="2">Expense</option>
+                                </select>
+                            </div>
+
+                            <div style={{ marginBottom: "15px" }}>
+                                <label>Amount</label>
+                                <input
+                                    type="number"
+                                    name="amount"
+                                    value={formData.amount}
+                                    onChange={handleInputChange}
+                                    style={inputStyle}
+                                />
+                            </div>
+
+                            <div style={{ marginBottom: "15px" }}>
+                                <label>Date</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={formData.date}
+                                    onChange={handleInputChange}
+                                    style={inputStyle}
+                                />
+                            </div>
+
+                            <button
+                                style={{
+                                    background: "#007bff",
+                                    color: "white",
+                                    padding: "10px 20px",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    cursor: "pointer",
+                                }}
+                                onClick={handleSave} // Save the transaction
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
+
     );
 };
 

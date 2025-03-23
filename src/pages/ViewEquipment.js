@@ -62,47 +62,49 @@ const ViewEquipment = () => {
     return (
         <div className="equipment-list">
             <h1>Welcome to Collaborative Farming Shop</h1>
-            {equipmentList.length === 0 ? (
-                <p>There is nothing to rent</p>
-            ) : (
-                equipmentList.map((item) => (
-                    <div key={item._id} className="equipment-card">
-                        <img src={`http://localhost:5000/${item.imagePath}`} alt={item.name} className="card-image" />
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                        <p>Condition: {item.condition}</p>
-                        <p>Price: Rs{item.price} per {item.rateType}</p>
-                        <p>Location: {item.location}</p>
-                        <p>Owner: {item.userName}</p>
-                        <p>Upload date: {new Date(item.createdAt).toLocaleDateString('en-US')}</p>
-                        <p>Status: {item.available ? 'Available' : 'Not Available'}</p>
-                        {item.returnDate && <p>Return Date: {new Date(item.returnDate).toLocaleDateString()}</p>}
-                       {item.available?<button onClick={() => handleOfferClick(item._id)}>Make an Offer</button>:<button disabled>Make an Offer</button>}
+            <div className='equipment-list-wrapper'>
+                {equipmentList.length === 0 ? (
+                    <p>There is nothing to rent</p>
+                ) : (
+                    equipmentList.map((item) => (
+                        <div key={item._id} className="equipment-card">
+                            <img src={`http://localhost:5000/${item.imagePath}`} alt={item.name} className="card-image" />
+                            <h3>{item.name}</h3>
+                            <p>{item.description}</p>
+                            <p>Condition: {item.condition}</p>
+                            <p>Price: Rs{item.price} per {item.rateType}</p>
+                            <p>Location: {item.location}</p>
+                            <p>Owner: {item.userName}</p>
+                            <p>Upload date: {new Date(item.createdAt).toLocaleDateString('en-US')}</p>
+                            <p>Status: {item.available ? 'Available' : 'Not Available'}</p>
+                            {item.returnDate && <p>Return Date: {new Date(item.returnDate).toLocaleDateString()}</p>}
+                            {item.available ? <button onClick={() => handleOfferClick(item._id)}>Make an Offer</button> : <button disabled>Make an Offer</button>}
+                        </div>
+                    ))
+                )}
+                {showOfferForm && (
+                    <div className="offer-form">
+                        <h3>Make an Offer</h3>
+                        <form onSubmit={handleOfferSubmit}>
+                            <input
+                                type="number"
+                                value={offerDetails.rentalDuration}
+                                onChange={(e) => setOfferDetails({ ...offerDetails, rentalDuration: e.target.value })}
+                                placeholder="Number of days"
+                                required
+                            />
+                            <textarea
+                                value={offerDetails.message}
+                                onChange={(e) => setOfferDetails({ ...offerDetails, message: e.target.value })}
+                                placeholder="Your message"
+                                required
+                            />
+                            <button type="submit">Send Offer</button>
+                            <button type="button" onClick={() => setShowOfferForm(false)}>Cancel</button>
+                        </form>
                     </div>
-                ))
-            )}
-            {showOfferForm && (
-                <div className="offer-form">
-                    <h3>Make an Offer</h3>
-                    <form onSubmit={handleOfferSubmit}>
-                        <input
-                            type="number"
-                            value={offerDetails.rentalDuration}
-                            onChange={(e) => setOfferDetails({ ...offerDetails, rentalDuration: e.target.value })}
-                            placeholder="Number of days"
-                            required
-                        />
-                        <textarea
-                            value={offerDetails.message}
-                            onChange={(e) => setOfferDetails({ ...offerDetails, message: e.target.value })}
-                            placeholder="Your message"
-                            required
-                        />
-                        <button type="submit">Send Offer</button>
-                        <button type="button" onClick={() => setShowOfferForm(false)}>Cancel</button>
-                    </form>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

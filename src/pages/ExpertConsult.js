@@ -140,6 +140,7 @@ const ExpertConsult = () => {
       </div>
 
       {/* Right Chat Window */}
+      <div className="chat-window-wrapper">
       <div className="chat-window">
         {selectedUser ? (
           <>
@@ -192,6 +193,7 @@ const ExpertConsult = () => {
         ) : (
           <p className="no-chat-selected">Select a user to start chatting</p>
         )}
+      </div>
       </div>
     </div>
   );

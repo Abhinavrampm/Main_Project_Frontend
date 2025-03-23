@@ -1,11 +1,22 @@
 /* Main container styling */
 .notifications-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 100px;
+}
+
+.notifications-wrapper {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    height: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 /* Section headers */

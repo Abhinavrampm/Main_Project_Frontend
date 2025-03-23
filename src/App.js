@@ -14,7 +14,6 @@ import Notifications from "./pages/Notifications";
 import Service from "./pages/Service";
 import Choose from "./pages/Choose";
 import CropDisease from "./pages/CropDisease";
-import ViewJobs from "./pages/ViewJobs";
 import AgriculturalNews from "./pages/AgricultureNews";
 import ExpenseTrackerDashboard from "./pages/ExpenseTrackerDashboard";
 import AddIncomeExpense from "./pages/addIncomeExpense";
@@ -22,6 +21,10 @@ import WeatherPage from "./pages/WeatherPage";
 import FertilizerRecommendation from "./components/FertilizerRecommendation";
 import ExpertConsult from "./pages/ExpertConsult";
 import CropRecommendation from "./pages/CropRecommendation";
+import JobsBoard from "./pages/jobsBoard";
+import AddJobs from "./pages/AddJobs";
+import ViewJob from "./pages/ViewJob";
+import ViewApplicants from "./pages/ViewApplicants";
 import './styles/App.css'
 
 const App = ({ setIsLoggedIn }) => {
@@ -45,13 +48,16 @@ const App = ({ setIsLoggedIn }) => {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/addEquipment" element={<AddEquipment />} />
         <Route path="/viewEquipment" element={<ViewEquipment />} />
-        <Route path="/viewJobs" element={<ViewJobs />} />
         <Route path="/news" element={<AgriculturalNews />} />
         <Route path="/expenseTrackerDashboard" element={<ExpenseTrackerDashboard />} />
         <Route path="/addIncomeExpense" element={<AddIncomeExpense />} />
         <Route path="/recommend-fertilizer" element={<FertilizerRecommendation />} />
         <Route path="/expertConsult" element={<ExpertConsult />} />
         <Route path="/crop-recommendation" element={<CropRecommendation />} />
+        <Route path="/jobsBoard" element={<JobsBoard />} />
+        <Route path="/addJobs" element={<AddJobs/>} />
+        <Route path="/viewJob" element={<ViewJob/>} />
+        <Route path="/viewApplicants" element={<ViewApplicants/>} />
 
         {/* Add more routes as needed */}
       </Routes>

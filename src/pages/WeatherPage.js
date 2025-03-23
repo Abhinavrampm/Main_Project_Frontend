@@ -7,6 +7,7 @@ import CropRecommendation from './CropRecommendation';
 
 const cropImage = require('../components/images/crop.png');
 const fertilizerImage = require('../components/images/fertilizer.png');
+const newsImage = require('../components/images/news.png');
 
 // register the neccessary chart components
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
@@ -220,6 +221,12 @@ const WeatherPage = () => {
 					<img src= {fertilizerImage} alt="Fertilizer Recommendation" className="recommendation-image" />
 					<h3>🧪 Fertilizer Recommendation</h3>
 					<p>Discover the best fertilizers for your crops to boost yield.</p>
+				</div>
+
+				<div className='news-card' onClick={() => navigate('/news')}>
+					<img src={newsImage} alt='newsCard'/>
+					<h3> 📰 Get Latest Agricultural News</h3>
+					<p>Discover whats happening around you.</p>
 				</div>
 			</div>
 

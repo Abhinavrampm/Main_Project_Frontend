@@ -26,7 +26,7 @@ const Chatbot = () => {
                             "text": `You are an AI assistant specialized in agriculture. Your job is to assist farmers with agriculture-related queries only. 
                             If the question is **not related to agriculture**, respond with: "Sorry, I can only answer agriculture-related questions." 
                             Be precise and informative while staying within agricultural topics.
-                            
+                            But Reply to common questions like "who are you?", "hi", "hello" indicating a greeting and welcoming
                             User's question: "${question}"`
                         }]
                     }]
@@ -65,7 +65,7 @@ const Chatbot = () => {
                     <h3>AI Farming Assistant</h3>
                     <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button>
                 </div>
-                <div className="chat-window">
+                <div className="chatbot-window">
                     {messages.map((msg, index) => (
                         <div key={index} className={`message ${msg.sender}`}>
                             <span>{msg.text}</span>

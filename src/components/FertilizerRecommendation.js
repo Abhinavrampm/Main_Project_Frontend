@@ -28,7 +28,7 @@ export default function FertilizerRecommendation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:5000/predict-fertilizer", formData);
+      const response = await axios.post("http://127.0.0.1:5001/predict-fertilizer", formData);
       setFertilizer(response.data.fertilizer);
     } catch (error) {
       console.error("Error fetching prediction", error);
